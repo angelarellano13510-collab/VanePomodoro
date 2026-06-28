@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirigiendo… — Pomodoro para Ti</title>
+  <!--
+    GitHub Pages 404 handler
+    -------------------------
+    If the project ever switches from hash routing (#/) to History API routing,
+    GitHub Pages will serve this file for unknown paths. This script safely
+    redirects visitors back to index.html while preserving the original URL
+    so the SPA can handle the route client-side.
+
+    For hash-based routing (current setup), this file is rarely needed but
+    keeps the project future-proof with zero extra configuration.
+  -->
+  <script>
+    (function () {
+      var path = window.location.pathname;
+      var search = window.location.search || '';
+      var hash = window.location.hash || '';
+
+      // Strip trailing 404.html if present, build redirect target
+      var base = path.replace(/\/404\.html$/, '').replace(/\/$/, '') || '';
+      var redirect = (base ? base + '/' : '/') + 'index.html';
+
+      // Preserve query string and hash for the SPA
+      if (search) redirect += search;
+      if (hash) redirect += hash;
+
+      // Fallback: encode full path in hash if no hash exists (History API recovery)
+      if (!hash && path && !path.endsWith('index.html')) {
+        redirect += '#/' + path.replace(/^\//, '').replace(/\/$/, '');
+      }
+
+      window.location.replace(redirect);
+    })();
+  </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=./index.html">
+    <p>Redirigiendo a <a href="./index.html">Pomodoro para Ti</a>…</p>
+  </noscript>
+</head>
+<body></body>
+</html>

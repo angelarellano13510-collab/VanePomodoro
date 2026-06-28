@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pomodoro para Ti — un temporizador elegante y acogedor para tu enfoque diario.">
+  <title>Pomodoro para Ti</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts: elegant feminine typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Quicksand:wght@400;500;600;700&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Animated floating decorative elements -->
+  <div class="floating-bg" aria-hidden="true" id="floating-bg"></div>
+
+  <div class="app-shell">
+    <!-- Navigation -->
+    <header class="navbar glass-card fade-in">
+      <a href="#/" class="nav-brand" aria-label="Inicio">
+        <span class="brand-icon">🌸</span>
+        <span class="brand-text">Vane's Pomodoro</span>
+      </a>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#/pomodoro" class="nav-link" data-route="pomodoro">Pomodoro</a>
+        <a href="#/dedicatoria" class="nav-link" data-route="dedicatoria">Dedicatoria</a>
+        <a href="#/ajustes" class="nav-link" data-route="ajustes">Ajustes</a>
+      </nav>
+      <button class="nav-menu-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <main class="main-content">
+      <!-- ==================== POMODORO PAGE ==================== -->
+      <section id="page-pomodoro" class="page active" data-page="pomodoro">
+        <div class="page-inner fade-in">
+          <div class="ribbon-badge">✨ Tu momento de enfoque ✨</div>
+
+          <div class="timer-card glass-card mode-focus" id="timer-card">
+            <div class="mode-indicator" id="mode-indicator">
+              <span class="mode-icon" id="mode-icon">🌷</span>
+              <span class="mode-label" id="mode-label">Focus</span>
+            </div>
+
+            <div class="timer-display" id="timer-display" aria-live="polite">25:00</div>
+
+            <div class="timer-controls">
+              <button class="btn btn-primary" id="btn-start" type="button">
+                <span class="btn-icon">▶</span> Start
+              </button>
+              <button class="btn btn-secondary" id="btn-pause" type="button" disabled>
+                <span class="btn-icon">⏸</span> Pause
+              </button>
+              <button class="btn btn-secondary" id="btn-resume" type="button" disabled>
+                <span class="btn-icon">▶</span> Resume
+              </button>
+              <button class="btn btn-outline" id="btn-reset" type="button">
+                <span class="btn-icon">↺</span> Reset
+              </button>
+              <button class="btn btn-outline" id="btn-skip" type="button">
+                <span class="btn-icon">⏭</span> Skip Break
+              </button>
+            </div>
+          </div>
+
+          <div class="stats-row">
+            <div class="stat-card glass-card fade-in-delay-1">
+              <div class="stat-emoji">🍓</div>
+              <p class="stat-label">Pomodoros completados hoy</p>
+              <p class="stat-value" id="session-pomodoros">0</p>
+              <p class="stat-hint">Sesión actual</p>
+            </div>
+            <div class="stat-card glass-card fade-in-delay-2">
+              <div class="stat-emoji">⏱️</div>
+              <p class="stat-label">Tiempo de enfoque de hoy</p>
+              <p class="stat-value" id="session-focus-time">0 min</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== DEDICATORIA PAGE ==================== -->
+      <section id="page-dedicatoria" class="page" data-page="dedicatoria">
+        <div class="page-inner fade-in">
+          <h1 class="page-title dedicatoria-title">
+            <span class="title-deco">💐</span>
+            Para Nani🍓
+            <span class="title-deco">💐</span>
+          </h1>
+
+          <div class="letter-frame glass-card">
+            <div class="letter-corner letter-corner-tl" aria-hidden="true">✿</div>
+            <div class="letter-corner letter-corner-tr" aria-hidden="true">✿</div>
+            <div class="letter-corner letter-corner-bl" aria-hidden="true">♡</div>
+            <div class="letter-corner letter-corner-br" aria-hidden="true">♡</div>
+
+            <div class="letter-sparkles" aria-hidden="true">
+              <span>✦</span><span>✧</span><span>✦</span>
+            </div>
+
+            <div class="letter-separator" aria-hidden="true">
+              <span>— ♡ —</span>
+            </div>
+
+            <div class="letter-body" id="letter-body">
+<p>Mi niña preciosa,</p>
+
+<p>¡20 meses juntos! 💗 La verdad me parece increíble lo rápido que ha pasado el tiempo. Siento que fue ayer cuando empezamos esta historia, y ahora ya hemos compartido tantos momentos, tantas risas, tantas aventuras, tantos abrazos y hasta los días difíciles que, al final, también nos hicieron más fuertes.</p>
+
+<p>Me impresiona mucho ver cuánto hemos crecido juntos. No solo como pareja, sino también como personas. Hemos aprendido el uno del otro, nos hemos apoyado cuando más lo necesitábamos, hemos celebrado nuestras pequeñas y grandes victorias, y hemos demostrado que, pase lo que pase, seguimos eligiéndonos todos los días.</p>
+
+<p>Te amo mucho, mucho, muchísimo. Casi siempre siento que esas palabras se quedan cortas para expresar todo lo que significas para mí. Eres una parte muy importante de mi vida, de mis días, de mis pensamientos y de mis sueños. Tu sonrisa tiene la capacidad de alegrarme incluso en los momentos más difíciles, y estar contigo hace que cualquier lugar se sienta como mi hogar, pues, tú, tú eres mi hogar.💕</p>
+
+<p>No sabes que tan agradecido estoy porque sigas en mi vida, y porque yo siga teniendo la fortuna de estar en la tuya. Gracias por quererme, por tenerme paciencia, por escucharme, por hacerme reír, por acompañarme en cada etapa, por regalarme tantos recuerdos que voy a guardar siempre con muchísimo cariño, y, principalmente, por darme un Amor tan genuino, sincero, desinteresado y real, un amor que nunca antes había sentido y estoy seguro que sería incapaz de volver a sentir.</p>
+
+<p>Te hice este pequeño regalo porque sé lo mucho que te apasiona estudiar, aprender y superarte. Espero que te guste muchísimo, que le des un muy buen uso y que cada vez que lo abras recuerdes que fue hecho con todo mi cariño y pensando en ti🥹. Me hace muy feliz poder regalarte algo que pueda acompañarte en cada paso que des.💕</p>
+
+<p>Quizás no sea el mejor escribiendo cartas, pero siento que este tipo de detalles me permiten demostrarte cuánto te amo de una forma muy especial. Me encanta poder regalarte algo que no solo sea bonito, sino que también pueda ayudarte y recordarte lo orgulloso que estoy de ti y de todo lo que eres capaz de lograr.</p>
+
+<p>Solo quiero pedirte una cosa: nunca dejemos de amarnos. Que estos 20 meses sean apenas el comienzo de una historia muchísimo más grande. Ojalá algún día podamos mirar atrás y sonreír al recordar que esos 20 meses terminaron convirtiéndose en 20 años, y luego en toda una vida. Que nuestras vidas sean dos líneas que, una vez se encontraron, y jamás volvieron a separarse.</p>
+
+<p>Felices 20 meses, mi amor. Espero que este sea solo un pequeño número comparado con todos los meses, años y momentos maravillosos que aún nos esperan. Te amo con todo mi corazón, hoy, mañana y siempre. 🥹💕</p>
+            </div>
+
+            <div class="letter-separator" aria-hidden="true">
+              <span>— ✿ —</span>
+            </div>
+
+            <div class="letter-signature" id="letter-signature">
+              Con cariño,<br>
+              Angelito
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== AJUSTES PAGE ==================== -->
+      <section id="page-ajustes" class="page" data-page="ajustes">
+        <div class="page-inner fade-in">
+          <h1 class="page-title">
+            <span class="title-deco">🎀</span>
+            Ajustes
+            <span class="title-deco">🎀</span>
+          </h1>
+
+          <div class="settings-grid">
+            <!-- Timer settings -->
+            <div class="settings-card glass-card fade-in-delay-1">
+              <h2 class="settings-heading">⏰ Temporizador</h2>
+
+              <div class="setting-row">
+                <label for="setting-work">Sesión de trabajo (min)</label>
+                <input type="number" id="setting-work" min="1" max="120" value="25">
+              </div>
+              <div class="setting-row">
+                <label for="setting-short">Descanso corto (min)</label>
+                <input type="number" id="setting-short" min="1" max="60" value="5">
+              </div>
+              <div class="setting-row">
+                <label for="setting-long">Descanso largo (min)</label>
+                <input type="number" id="setting-long" min="1" max="120" value="15">
+              </div>
+              <div class="setting-row">
+                <label for="setting-long-interval">Pomodoros antes de descanso largo</label>
+                <input type="number" id="setting-long-interval" min="2" max="10" value="4">
+              </div>
+              <div class="setting-row toggle-row">
+                <label for="setting-auto-start">Auto-iniciar siguiente sesión</label>
+                <input type="checkbox" id="setting-auto-start" class="toggle">
+              </div>
+              <div class="setting-row toggle-row">
+                <label for="setting-auto-break">Auto-iniciar descansos</label>
+                <input type="checkbox" id="setting-auto-break" class="toggle">
+              </div>
+            </div>
+
+            <!-- Alarm settings -->
+            <div class="settings-card glass-card fade-in-delay-2">
+              <h2 class="settings-heading">🔔 Alarmas</h2>
+
+              <div class="setting-row">
+                <label for="setting-sound">Sonido de alarma</label>
+                <select id="setting-sound">
+                  <option value="bell">Bell</option>
+                  <option value="chime">Chime</option>
+                  <option value="piano">Piano</option>
+                  <option value="forest">Forest</option>
+                  <option value="digital">Digital</option>
+                </select>
+              </div>
+              <div class="setting-row">
+                <label for="setting-volume">Volumen</label>
+                <input type="range" id="setting-volume" min="0" max="100" value="70">
+                <span class="volume-label" id="volume-label">70%</span>
+              </div>
+              <div class="setting-row toggle-row">
+                <label for="setting-muted">Silenciar sonidos</label>
+                <input type="checkbox" id="setting-muted" class="toggle">
+              </div>
+              <button class="btn btn-outline btn-preview" id="btn-preview-sound" type="button">
+                🎵 Probar sonido
+              </button>
+            </div>
+
+            <!-- Appearance -->
+            <div class="settings-card glass-card fade-in-delay-3">
+              <h2 class="settings-heading">🌙 Apariencia</h2>
+              <div class="setting-row toggle-row">
+                <label for="setting-dark">Modo oscuro</label>
+                <input type="checkbox" id="setting-dark" class="toggle">
+              </div>
+            </div>
+
+            <!-- Lifetime statistics -->
+            <div class="settings-card glass-card stats-panel fade-in-delay-4">
+              <h2 class="settings-heading">📊 Estadísticas</h2>
+              <div class="lifetime-stats">
+                <div class="lifetime-stat">
+                  <span class="lifetime-stat-label">Pomodoros de hoy</span>
+                  <span class="lifetime-stat-value" id="stat-today-pomodoros">0</span>
+                </div>
+                <div class="lifetime-stat">
+                  <span class="lifetime-stat-label">Tiempo de enfoque hoy</span>
+                  <span class="lifetime-stat-value" id="stat-today-focus">0 min</span>
+                </div>
+                <div class="lifetime-stat">
+                  <span class="lifetime-stat-label">Racha actual</span>
+                  <span class="lifetime-stat-value" id="stat-current-streak">0 días</span>
+                </div>
+                <div class="lifetime-stat">
+                  <span class="lifetime-stat-label">Racha más larga</span>
+                  <span class="lifetime-stat-value" id="stat-longest-streak">0 días</span>
+                </div>
+                <div class="lifetime-stat">
+                  <span class="lifetime-stat-label">Total de pomodoros</span>
+                  <span class="lifetime-stat-value" id="stat-total-pomodoros">0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer fade-in">
+      <p>Hecho con amor para la persona más importante de mi vida💕</p>
+    </footer>
+  </div>
+
+  <!-- Classic scripts (no ES modules) — works on file:// and GitHub Pages -->
+  <script src="js/storage.js"></script>
+  <script src="js/sounds.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
