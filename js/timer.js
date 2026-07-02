@@ -32,6 +32,9 @@
   let sessionPomodoros = 0;
   let els = {};
   let onStatsUpdate = null;
+  let startTime = null;
+  let pausedAt = null;
+  let expectedRemaining = 0;
 
   function formatTime(seconds) {
     const m = Math.floor(seconds / 60);
@@ -163,6 +166,9 @@
     remainingSeconds = getDurationForMode(mode, s);
     isRunning = false;
     isPaused = false;
+    startTime = null;
+    pausedAt = null;
+    expectedRemaining = 0;
     clearInterval(intervalId);
     intervalId = null;
     updateDisplay();
@@ -170,13 +176,17 @@
   }
 
   function tick() {
+    const now = Date.now();
+    const elapsed = Math.floor((now - startTime) / 1000);
+    remainingSeconds = expectedRemaining - elapsed;
+    
     if (remainingSeconds <= 0) {
       clearInterval(intervalId);
       intervalId = null;
+      remainingSeconds = 0;
       onSegmentComplete();
       return;
     }
-    remainingSeconds -= 1;
     updateDisplay();
   }
 
@@ -184,6 +194,8 @@
     if (isRunning && !isPaused) return;
     isRunning = true;
     isPaused = false;
+    startTime = Date.now();
+    expectedRemaining = remainingSeconds;
     if (!intervalId) intervalId = setInterval(tick, 1000);
     updateButtons();
     updateDisplay();
@@ -192,6 +204,7 @@
   function pauseTimer() {
     if (!isRunning || isPaused) return;
     isPaused = true;
+    pausedAt = Date.now();
     clearInterval(intervalId);
     intervalId = null;
     updateButtons();
@@ -200,7 +213,12 @@
 
   function resumeTimer() {
     if (!isPaused) return;
-    startTimer();
+    const pauseDuration = Math.floor((Date.now() - pausedAt) / 1000);
+    startTime += pauseDuration * 1000;
+    isPaused = false;
+    if (!intervalId) intervalId = setInterval(tick, 1000);
+    updateButtons();
+    updateDisplay();
   }
 
   function resetTimer() {
@@ -208,6 +226,9 @@
     intervalId = null;
     isRunning = false;
     isPaused = false;
+    startTime = null;
+    pausedAt = null;
+    expectedRemaining = 0;
     const settings = loadSettings();
     remainingSeconds = getDurationForMode(mode, settings);
     updateButtons();
@@ -235,6 +256,13 @@
     onStatsUpdate = statsCallback;
     switchMode(MODES.WORK, loadSettings());
     updateSessionStats();
+    
+    // Handle page visibility changes to update timer when tab becomes visible again
+    document.addEventListener('visibilitychange', function() {
+      if (!document.hidden && isRunning && !isPaused && intervalId) {
+        tick();
+      }
+    });
   }
 
   App.timer = {
